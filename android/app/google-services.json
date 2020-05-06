@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "522588189704",
+    "firebase_url": "https://hix-flutix.firebaseio.com",
+    "project_id": "hix-flutix",
+    "storage_bucket": "hix-flutix.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522588189704:android:ac23a8db77c5019ba84dbd",
+        "android_client_info": {
+          "package_name": "space.heritsam.hix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522588189704-a7raui0p47qrqd542hl761ls4nsnnljp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "space.heritsam.hix",
+            "certificate_hash": "e1ca6ae24b72a90e601f87f8e72f73ee72f01ed0"
+          }
+        },
+        {
+          "client_id": "522588189704-enf3n5g61rbvs866a4rhm3108r4431m8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgaIvbd06GvKcetww2eU6i1V53tIBh04E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522588189704-enf3n5g61rbvs866a4rhm3108r4431m8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
