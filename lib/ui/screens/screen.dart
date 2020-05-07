@@ -33,9 +33,3 @@ part 'authentication/splash_screen.dart';
 part 'home/home_page.dart';
 
 part 'home/movie_page.dart';
-
-Future<File> getImage() async {
-  File image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
-  return image;
-}

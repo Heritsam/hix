@@ -1,7 +1,6 @@
 part of '../screen.dart';
 
 class MoviePage extends StatelessWidget {
-
   void _signOutButtonPressed(BuildContext context) {
     CupertinoAlertDialog alertDialog = CupertinoAlertDialog(
       title: Text('Confirm Log Out'),
@@ -64,6 +63,14 @@ class MoviePage extends StatelessWidget {
               // ignore: missing_return
               builder: (context, state) {
                 if (state is UserLoadSuccess) {
+                  if (imageFileToUpload != null) {
+                    uploadImage(imageFileToUpload).then((downloadUrl) {
+                      imageFileToUpload = null;
+                      BlocProvider.of<UserBloc>(context)
+                          .add(UserUpdate(profileImage: downloadUrl));
+                    });
+                  }
+
                   return Row(
                     children: <Widget>[
                       GestureDetector(
@@ -77,18 +84,34 @@ class MoviePage extends StatelessWidget {
                               width: 2.0,
                             ),
                           ),
-                          child: Container(
-                            height: 50.0,
-                            width: 50.0,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                image: state.user.profilePicture == ''
-                                    ? AssetImage('assets/profile_picture.png')
-                                    : NetworkImage(state.user.profilePicture),
-                                fit: BoxFit.cover,
+                          child: Stack(
+                            children: <Widget>[
+                              Shimmer.fromColors(
+                                baseColor: Colors.grey[300].withOpacity(0.8),
+                                highlightColor: Colors.white.withOpacity(0.8),
+                                child: Container(
+                                  height: 50.0,
+                                  width: 50.0,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.white
+                                  ),
+                                ),
                               ),
-                            ),
+                              Container(
+                                height: 50.0,
+                                width: 50.0,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: state.user.profilePicture == ''
+                                        ? AssetImage('assets/profile_picture.png')
+                                        : NetworkImage(state.user.profilePicture),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

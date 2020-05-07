@@ -46,6 +46,13 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
