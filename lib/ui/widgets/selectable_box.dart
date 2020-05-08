@@ -22,8 +22,9 @@ class SelectableBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap ?? null,
+      borderRadius: BorderRadius.circular(8.0),
       child: Container(
         height: height,
         width: width,
