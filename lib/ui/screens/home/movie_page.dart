@@ -1,6 +1,12 @@
 part of '../screen.dart';
 
-class MoviePage extends StatelessWidget {
+class MoviePage extends StatefulWidget {
+  @override
+  _MoviePageState createState() => _MoviePageState();
+}
+
+class _MoviePageState extends State<MoviePage> {
+
   void _signOutButtonPressed(BuildContext context) {
     CupertinoAlertDialog alertDialog = CupertinoAlertDialog(
       title: Text('Confirm Log Out'),
@@ -72,11 +78,27 @@ class MoviePage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16.0),
+          _buildListPromo(),
+          SizedBox(height: 80.0),
         ],
       ),
     );
   }
-  
+
+  Widget _buildListPromo() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+      child: Column(
+        children: dummyPromos.map((item) {
+          return Padding(
+            padding: EdgeInsets.only(bottom: 16.0),
+            child: PromoCard(promo: item),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
   Widget _buildComingSoonMovie() {
     return SizedBox(
       height: 140.0,
@@ -227,151 +249,151 @@ class MoviePage extends StatelessWidget {
           ],
         ),
       ),
-      child: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.all(32.0),
-            child: BlocBuilder<UserBloc, UserState>(
-              // ignore: missing_return
-              builder: (context, state) {
-                if (state is UserLoadSuccess) {
-                  if (imageFileToUpload != null) {
-                    uploadImage(imageFileToUpload).then((downloadUrl) {
-                      imageFileToUpload = null;
-                      BlocProvider.of<UserBloc>(context)
-                          .add(UserUpdate(profileImage: downloadUrl));
-                    });
-                  }
+      child: Center(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(
+              32.0, 32.0 + MediaQuery.of(context).padding.top, 32.0, 32.0),
+          child: BlocBuilder<UserBloc, UserState>(
+            // ignore: missing_return
+            builder: (context, state) {
+              if (state is UserLoadSuccess) {
+                if (imageFileToUpload != null) {
+                  uploadImage(imageFileToUpload).then((downloadUrl) {
+                    imageFileToUpload = null;
+                    BlocProvider.of<UserBloc>(context).add(
+                      UserUpdate(profileImage: downloadUrl),
+                    );
+                  });
+                }
 
-                  return Row(
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: () => _signOutButtonPressed(context),
-                        child: Container(
-                          padding: EdgeInsets.all(4.0),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.white38,
-                              width: 2.0,
-                            ),
+                return Row(
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: () => _signOutButtonPressed(context),
+                      child: Container(
+                        padding: EdgeInsets.all(4.0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.white38,
+                            width: 2.0,
                           ),
-                          child: Stack(
-                            children: <Widget>[
-                              Shimmer.fromColors(
-                                baseColor: shimmerBaseColor,
-                                highlightColor: shimmerHighlightColor,
-                                child: Container(
-                                  height: 50.0,
-                                  width: 50.0,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.white),
-                                ),
-                              ),
-                              Container(
+                        ),
+                        child: Stack(
+                          children: <Widget>[
+                            Shimmer.fromColors(
+                              baseColor: shimmerBaseColor,
+                              highlightColor: shimmerHighlightColor,
+                              child: Container(
                                 height: 50.0,
                                 width: 50.0,
                                 decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: state.user.profilePicture == ''
-                                        ? AssetImage(
-                                            'assets/profile_picture.png',
-                                          )
-                                        : NetworkImage(
-                                            state.user.profilePicture,
-                                          ),
-                                    fit: BoxFit.cover,
-                                  ),
+                                    shape: BoxShape.circle,
+                                    color: Colors.white),
+                              ),
+                            ),
+                            Container(
+                              height: 50.0,
+                              width: 50.0,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  image: state.user.profilePicture == ''
+                                      ? AssetImage(
+                                          'assets/profile_picture.png',
+                                        )
+                                      : NetworkImage(
+                                          state.user.profilePicture,
+                                        ),
+                                  fit: BoxFit.cover,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(width: 16.0),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width -
-                                2 * defaultMargin -
-                                78 -
-                                16,
-                            child: Text(
-                              state.user.name,
-                              style: GoogleFonts.nunitoSans(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          Text(
-                            NumberFormat.currency(
-                              locale: 'id_ID',
-                              decimalDigits: 0,
-                              symbol: 'IDR ',
-                            ).format(state.user.balance),
-                            style: GoogleFonts.openSans(
+                    ),
+                    SizedBox(width: 16.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width -
+                              2 * defaultMargin -
+                              78 -
+                              16,
+                          child: Text(
+                            state.user.name,
+                            style: GoogleFonts.nunitoSans(
                               color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
                             ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                        ],
-                      ),
-                    ],
-                  );
-                }
+                        ),
+                        Text(
+                          NumberFormat.currency(
+                            locale: 'id_ID',
+                            decimalDigits: 0,
+                            symbol: 'IDR ',
+                          ).format(state.user.balance),
+                          style: GoogleFonts.openSans(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                );
+              }
 
-                if (state is UserInitial) {
-                  return Row(
-                    children: <Widget>[
-                      Shimmer.fromColors(
-                        baseColor: shimmerBaseColor,
-                        highlightColor: shimmerHighlightColor,
-                        child: Container(
-                          height: 50.0,
-                          width: 50.0,
-                          color: Colors.white,
+              if (state is UserInitial) {
+                return Row(
+                  children: <Widget>[
+                    Shimmer.fromColors(
+                      baseColor: shimmerBaseColor,
+                      highlightColor: shimmerHighlightColor,
+                      child: Container(
+                        height: 50.0,
+                        width: 50.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(width: 16.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Shimmer.fromColors(
+                          baseColor: shimmerBaseColor,
+                          highlightColor: shimmerHighlightColor,
+                          child: Container(
+                            height: 25.0,
+                            width: 138.0,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 16.0),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Shimmer.fromColors(
-                            baseColor: shimmerBaseColor,
-                            highlightColor: shimmerHighlightColor,
-                            child: Container(
-                              height: 25.0,
-                              width: 138.0,
-                              color: Colors.white,
-                            ),
+                        SizedBox(height: 4.0),
+                        Shimmer.fromColors(
+                          baseColor: shimmerBaseColor,
+                          highlightColor: shimmerHighlightColor,
+                          child: Container(
+                            height: 19.0,
+                            width: 80.0,
+                            color: Colors.white,
                           ),
-                          SizedBox(height: 4.0),
-                          Shimmer.fromColors(
-                            baseColor: shimmerBaseColor,
-                            highlightColor: shimmerHighlightColor,
-                            child: Container(
-                              height: 19.0,
-                              width: 80.0,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  );
-                }
-              },
-            ),
+                        ),
+                      ],
+                    ),
+                  ],
+                );
+              }
+            },
           ),
         ),
       ),

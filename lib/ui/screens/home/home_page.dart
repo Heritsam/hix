@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       backgroundColor: Colors.blueGrey[50],
       body: PageView(
         controller: _pageController,

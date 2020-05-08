@@ -23,12 +23,12 @@ List<Promo> dummyPromos = <Promo>[
   ),
   Promo(
     title: 'Family Club',
-    description: 'Limited only 2 people',
-    discount: 50,
+    description: 'Min. 4 people',
+    discount: 70,
   ),
   Promo(
-    title: 'Student Holiday',
-    description: 'Limited only 2 people',
-    discount: 50,
+    title: 'Subscription Promo',
+    description: 'Min. one year subscription',
+    discount: 40,
   ),
 ];
