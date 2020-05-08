@@ -5,3 +5,7 @@ export 'page/page_state.dart';
 export 'user/user_bloc.dart';
 export 'user/user_event.dart';
 export 'user/user_state.dart';
+
+export 'movie/movie_bloc.dart';
+export 'movie/movie_event.dart';
+export 'movie/movie_state.dart';

@@ -17,6 +17,7 @@ class MoviePage extends StatelessWidget {
             Navigator.pop(context);
             AuthService.signOut();
           },
+          isDestructiveAction: true,
           child: Text('Yes'),
         ),
       ],
@@ -27,11 +28,75 @@ class MoviePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           _buildPageHeader(),
+          SizedBox(height: 16.0),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 16.0,
+              horizontal: defaultMargin,
+            ),
+            child: Text(
+              'Now Playing',
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+            ),
+          ),
+          _buildMoviePlaying(),
         ],
+      ),
+    );
+  }
+
+  Widget _buildMoviePlaying() {
+    return SizedBox(
+      height: 140.0,
+      child: BlocBuilder<MovieBloc, MovieState>(
+        builder: (context, state) {
+          print(state.toString());
+          if (state is MovieLoaded) {
+            List<Movie> movies = state.movies.sublist(0, 9);
+
+            return ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: movies.length,
+              physics: BouncingScrollPhysics(),
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: MovieCard(
+                    onTap: () {},
+                    movie: movies[index],
+                  ),
+                );
+              },
+            );
+          }
+
+          return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 3,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Shimmer.fromColors(
+                baseColor: Colors.grey[300].withOpacity(0.8),
+                highlightColor: Colors.white.withOpacity(0.8),
+                child: Container(
+                  height: 140.0,
+                  width: 210.0,
+                  margin: EdgeInsets.only(left: 24.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }
@@ -93,9 +158,8 @@ class MoviePage extends StatelessWidget {
                                   height: 50.0,
                                   width: 50.0,
                                   decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.white
-                                  ),
+                                      shape: BoxShape.circle,
+                                      color: Colors.white),
                                 ),
                               ),
                               Container(
@@ -105,8 +169,10 @@ class MoviePage extends StatelessWidget {
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
                                     image: state.user.profilePicture == ''
-                                        ? AssetImage('assets/profile_picture.png')
-                                        : NetworkImage(state.user.profilePicture),
+                                        ? AssetImage(
+                                            'assets/profile_picture.png')
+                                        : NetworkImage(
+                                            state.user.profilePicture),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
