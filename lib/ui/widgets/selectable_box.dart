@@ -42,10 +42,7 @@ class SelectableBox extends StatelessWidget {
           child: Text(
             label,
             style: textStyle ??
-                GoogleFonts.nunitoSans(
-                  fontSize: 16.0,
-                  color: Colors.black,
-                ),
+                GoogleFonts.nunitoSans(fontSize: 16.0, color: Colors.black),
           ),
         ),
       ),

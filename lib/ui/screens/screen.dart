@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,7 +10,6 @@ import 'package:hix/models/model.dart';
 import 'package:hix/services/service.dart';
 import 'package:hix/shared/shared.dart';
 import 'package:hix/ui/widgets/widget.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';

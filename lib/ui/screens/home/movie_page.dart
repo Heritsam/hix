@@ -33,24 +33,132 @@ class MoviePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           _buildPageHeader(),
-          SizedBox(height: 16.0),
+          SizedBox(height: 32.0),
           Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: 16.0,
-              horizontal: defaultMargin,
-            ),
+            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
             child: Text(
               'Now Playing',
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
           ),
-          _buildMoviePlaying(),
+          SizedBox(height: 16.0),
+          _buildNowPlayingMovie(),
+          SizedBox(height: 32.0),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+            child: Text(
+              'Browse Movie',
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(height: 16.0),
+          _buildBrowseMovie(),
+          SizedBox(height: 32.0),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+            child: Text(
+              'Coming Soon',
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(height: 16.0),
+          _buildComingSoonMovie(),
+          SizedBox(height: 32.0),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+            child: Text(
+              'It\'s Your Lucky Day!',
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(height: 16.0),
         ],
       ),
     );
   }
+  
+  Widget _buildComingSoonMovie() {
+    return SizedBox(
+      height: 140.0,
+      child: BlocBuilder<MovieBloc, MovieState>(
+        builder: (context, state) {
+          if (state is MovieLoaded) {
+            List<Movie> movies = state.movies.sublist(10);
 
-  Widget _buildMoviePlaying() {
+            return ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: movies.length,
+              physics: BouncingScrollPhysics(),
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: ComingSoonCard(
+                    onTap: () {},
+                    movie: movies[index],
+                  ),
+                );
+              },
+            );
+          }
+
+          return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 3,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Shimmer.fromColors(
+                baseColor: shimmerBaseColor,
+                highlightColor: shimmerHighlightColor,
+                child: Container(
+                  height: 140.0,
+                  width: 210.0,
+                  margin: EdgeInsets.only(left: 24.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildBrowseMovie() {
+    return BlocBuilder<UserBloc, UserState>(
+      builder: (context, state) {
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: List.generate(4, (index) {
+              if (state is UserLoadSuccess) {
+                return BrowseButton(genre: state.user.selectedGenres[index]);
+              }
+
+              return Shimmer.fromColors(
+                baseColor: shimmerBaseColor,
+                highlightColor: shimmerHighlightColor,
+                child: Container(
+                  height: MediaQuery.of(context).size.width / 4 - 24,
+                  width: MediaQuery.of(context).size.width / 4 - 24,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    color: Colors.white,
+                  ),
+                ),
+              );
+            }),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildNowPlayingMovie() {
     return SizedBox(
       height: 140.0,
       child: BlocBuilder<MovieBloc, MovieState>(
@@ -81,8 +189,8 @@ class MoviePage extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return Shimmer.fromColors(
-                baseColor: Colors.grey[300].withOpacity(0.8),
-                highlightColor: Colors.white.withOpacity(0.8),
+                baseColor: shimmerBaseColor,
+                highlightColor: shimmerHighlightColor,
                 child: Container(
                   height: 140.0,
                   width: 210.0,
@@ -151,8 +259,8 @@ class MoviePage extends StatelessWidget {
                           child: Stack(
                             children: <Widget>[
                               Shimmer.fromColors(
-                                baseColor: Colors.grey[300].withOpacity(0.8),
-                                highlightColor: Colors.white.withOpacity(0.8),
+                                baseColor: shimmerBaseColor,
+                                highlightColor: shimmerHighlightColor,
                                 child: Container(
                                   height: 50.0,
                                   width: 50.0,
@@ -169,9 +277,11 @@ class MoviePage extends StatelessWidget {
                                   image: DecorationImage(
                                     image: state.user.profilePicture == ''
                                         ? AssetImage(
-                                            'assets/profile_picture.png')
+                                            'assets/profile_picture.png',
+                                          )
                                         : NetworkImage(
-                                            state.user.profilePicture),
+                                            state.user.profilePicture,
+                                          ),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -223,8 +333,8 @@ class MoviePage extends StatelessWidget {
                   return Row(
                     children: <Widget>[
                       Shimmer.fromColors(
-                        baseColor: Colors.grey[300].withOpacity(0.8),
-                        highlightColor: Colors.white.withOpacity(0.8),
+                        baseColor: shimmerBaseColor,
+                        highlightColor: shimmerHighlightColor,
                         child: Container(
                           height: 50.0,
                           width: 50.0,
@@ -237,8 +347,8 @@ class MoviePage extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           Shimmer.fromColors(
-                            baseColor: Colors.grey[300].withOpacity(0.8),
-                            highlightColor: Colors.white.withOpacity(0.8),
+                            baseColor: shimmerBaseColor,
+                            highlightColor: shimmerHighlightColor,
                             child: Container(
                               height: 25.0,
                               width: 138.0,
@@ -247,8 +357,8 @@ class MoviePage extends StatelessWidget {
                           ),
                           SizedBox(height: 4.0),
                           Shimmer.fromColors(
-                            baseColor: Colors.grey[300].withOpacity(0.8),
-                            highlightColor: Colors.white.withOpacity(0.8),
+                            baseColor: shimmerBaseColor,
+                            highlightColor: shimmerHighlightColor,
                             child: Container(
                               height: 19.0,
                               width: 80.0,
