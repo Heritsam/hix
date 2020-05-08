@@ -55,7 +55,6 @@ class MoviePage extends StatelessWidget {
       height: 140.0,
       child: BlocBuilder<MovieBloc, MovieState>(
         builder: (context, state) {
-          print(state.toString());
           if (state is MovieLoaded) {
             List<Movie> movies = state.movies.sublist(0, 9);
 
