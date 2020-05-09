@@ -16,17 +16,11 @@ import 'package:shimmer/shimmer.dart';
 import 'package:toast/toast.dart';
 
 part 'wrapper.dart';
-
-part 'authentication/sign_in_page.dart';
-
-part 'authentication/sign_up_page.dart';
-
-part 'authentication/sign_up_preference_page.dart';
-
 part 'authentication/confirmation_page.dart';
-
+part 'authentication/sign_in_page.dart';
+part 'authentication/sign_up_page.dart';
+part 'authentication/sign_up_preference_page.dart';
 part 'authentication/splash_screen.dart';
-
 part 'home/home_page.dart';
-
-part 'home/movie_page.dart';
+part 'movie/movie_page.dart';
+part 'movie/movie_detail_page.dart';

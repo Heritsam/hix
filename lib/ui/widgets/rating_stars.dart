@@ -4,12 +4,14 @@ class RatingStars extends StatelessWidget {
   final double voteAverage;
   final double starSize;
   final double fontSize;
+  final Color textColor;
 
   RatingStars({
     Key key,
     this.voteAverage = 0,
     this.starSize = 20.0,
     this.fontSize = 12.0,
+    this.textColor = Colors.white,
   }) : super(key: key);
 
   @override
@@ -19,7 +21,7 @@ class RatingStars extends StatelessWidget {
     List<Widget> widgets = List.generate(5, (index) {
       return Icon(
         Icons.star,
-        color: index < n ? accentColor : Color(0xFFE5E5E5).withOpacity(0.54),
+        color: index < n ? accentColor : textColor.withOpacity(0.26),
         size: starSize,
       );
     });
@@ -28,7 +30,7 @@ class RatingStars extends StatelessWidget {
     widgets.add(Text(
       '$voteAverage / 10',
       style: TextStyle(
-        color: Colors.white,
+        color: textColor,
         fontSize: fontSize,
       ),
     ));

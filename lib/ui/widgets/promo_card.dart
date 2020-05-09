@@ -26,6 +26,10 @@ class PromoCard extends StatelessWidget {
                 accentColor,
               ],
             ),
+            image: DecorationImage(
+              image: AssetImage('assets/bg.png'),
+              fit: BoxFit.cover,
+            ),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

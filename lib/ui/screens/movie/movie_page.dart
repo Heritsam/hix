@@ -6,7 +6,6 @@ class MoviePage extends StatefulWidget {
 }
 
 class _MoviePageState extends State<MoviePage> {
-
   void _signOutButtonPressed(BuildContext context) {
     CupertinoAlertDialog alertDialog = CupertinoAlertDialog(
       title: Text('Confirm Log Out'),
@@ -150,12 +149,14 @@ class _MoviePageState extends State<MoviePage> {
   }
 
   Widget _buildBrowseMovie() {
+    final double size = MediaQuery.of(context).size.width / 4 - 24;
+
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: defaultMargin),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: List.generate(4, (index) {
               if (state is UserLoadSuccess) {
                 return BrowseButton(genre: state.user.selectedGenres[index]);
@@ -165,8 +166,8 @@ class _MoviePageState extends State<MoviePage> {
                 baseColor: shimmerBaseColor,
                 highlightColor: shimmerHighlightColor,
                 child: Container(
-                  height: MediaQuery.of(context).size.width / 4 - 24,
-                  width: MediaQuery.of(context).size.width / 4 - 24,
+                  height: size,
+                  width: size,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     color: Colors.white,
@@ -197,7 +198,15 @@ class _MoviePageState extends State<MoviePage> {
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: MovieCard(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MovieDetailPage(
+                            movie: movies[index],
+                          ),
+                        ),
+                      );
+                    },
                     movie: movies[index],
                   ),
                 );
@@ -231,8 +240,27 @@ class _MoviePageState extends State<MoviePage> {
   }
 
   Widget _buildPageHeader() {
+
+    List<BoxShadow> boxShadows = [
+      BoxShadow(
+        blurRadius: 24.0,
+        color: primaryColorLight.withOpacity(0.22),
+        offset: Offset(0, 16.0),
+      ),
+      BoxShadow(
+        blurRadius: 6.0,
+        color: primaryColor.withOpacity(0.14),
+        offset: Offset(0, 2.0),
+      ),
+      BoxShadow(
+        blurRadius: 1.0,
+        color: Colors.black.withOpacity(0.08),
+        offset: Offset(0, 0),
+      ),
+    ];
+
     return Container(
-      height: 164.0,
+      height: 150.0 + MediaQuery.of(context).padding.top,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(25.0),
@@ -248,6 +276,7 @@ class _MoviePageState extends State<MoviePage> {
             accentColor,
           ],
         ),
+        boxShadow: boxShadows,
       ),
       child: Center(
         child: Padding(

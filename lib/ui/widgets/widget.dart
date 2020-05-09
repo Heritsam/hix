@@ -6,6 +6,7 @@ import 'package:hix/shared/shared.dart';
 import 'package:shimmer/shimmer.dart';
 
 part 'coming_soon_card.dart';
+part 'cast_card.dart';
 part 'browse_button.dart';
 part 'movie_card.dart';
 part 'promo_card.dart';

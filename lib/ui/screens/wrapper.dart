@@ -44,6 +44,10 @@ class Wrapper extends StatelessWidget {
         if (state is OnHomePage) {
           return HomePage();
         }
+
+        if (state is OnMovieDetailPage) {
+          return MovieDetailPage(movie: state.movie);
+        }
       },
     );
   }
