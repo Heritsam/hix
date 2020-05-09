@@ -34,7 +34,7 @@ class SelectableBox extends StatelessWidget {
               ? Colors.blueGrey[200]
               : isSelected ? primaryColorLight : Colors.transparent,
           border: Border.all(
-            color: Color(0xFFE4E4E4),
+            color: isSelected ? Colors.transparent : Color(0xFFE4E4E4),
             width: 2.0,
           ),
         ),
