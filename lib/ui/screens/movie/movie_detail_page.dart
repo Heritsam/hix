@@ -2,8 +2,13 @@ part of '../screen.dart';
 
 class MovieDetailPage extends StatefulWidget {
   final Movie movie;
+  final bool isComingSoon;
 
-  const MovieDetailPage({Key key, this.movie}) : super(key: key);
+  const MovieDetailPage({
+    Key key,
+    this.movie,
+    this.isComingSoon = false,
+  }) : super(key: key);
 
   @override
   _MovieDetailPageState createState() => _MovieDetailPageState();
@@ -32,7 +37,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   credits = snapshot.data;
-
                   return _MainView(
                     movie: movieDetail,
                     credits: credits,
@@ -48,7 +52,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
           }
         },
       ),
-      floatingActionButton: _buildFloatingActionButton(),
+      floatingActionButton:
+          widget.isComingSoon ? null : _buildFloatingActionButton(),
     );
   }
 
@@ -142,8 +147,10 @@ class _MainView extends StatelessWidget {
                     bottomLeft: Radius.circular(25.0),
                   ),
                   image: DecorationImage(
-                    image:
-                        NetworkImage(imageBaseURL + 'w780' + movie.backdropPath),
+                    image: movie.backdropPath == null
+                        ? AssetImage('assets/no_image.png')
+                        : NetworkImage(
+                            imageBaseURL + 'w780' + movie.backdropPath),
                     fit: BoxFit.cover,
                   ),
                   boxShadow: _boxShadows,
@@ -199,7 +206,8 @@ class _MainView extends StatelessWidget {
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   physics: BouncingScrollPhysics(),
-                  padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                   itemCount: credits.length,
                   itemBuilder: (context, index) {
                     return Padding(
@@ -321,7 +329,7 @@ class _BackButton extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.black54,
+                color: Colors.black38,
               ),
               child: Padding(
                 padding: EdgeInsets.all(8.0),

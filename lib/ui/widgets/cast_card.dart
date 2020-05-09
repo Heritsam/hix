@@ -30,7 +30,7 @@ class CastCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0),
                 image: DecorationImage(
                   image: credit.profilePath == null
-                      ? AssetImage('assets/logo.png')
+                      ? AssetImage('assets/no_image280.png')
                       : NetworkImage(
                           imageBaseURL + 'w185' + credit.profilePath,
                         ),

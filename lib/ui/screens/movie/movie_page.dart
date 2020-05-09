@@ -104,7 +104,7 @@ class _MoviePageState extends State<MoviePage> {
       child: BlocBuilder<MovieBloc, MovieState>(
         builder: (context, state) {
           if (state is MovieLoaded) {
-            List<Movie> movies = state.movies.sublist(10);
+            List<Movie> movies = state.upcomingMovies.sublist(10);
 
             return ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -115,7 +115,16 @@ class _MoviePageState extends State<MoviePage> {
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: ComingSoonCard(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MovieDetailPage(
+                            movie: movies[index],
+                            isComingSoon: true,
+                          ),
+                        ),
+                      );
+                    },
                     movie: movies[index],
                   ),
                 );
