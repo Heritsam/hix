@@ -36,9 +36,6 @@ class MyApp extends StatelessWidget {
             buttonTheme: ButtonThemeData(
               textTheme: ButtonTextTheme.primary,
               buttonColor: primaryColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
             ),
             appBarTheme: AppBarTheme(
               elevation: 0.0,
