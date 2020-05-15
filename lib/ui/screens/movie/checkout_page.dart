@@ -56,6 +56,26 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     ),
                   ],
                 ),
+                SizedBox(height: 32.0),
+                Container(
+                  width: 250.0,
+                  child: user.balance >= total
+                      ? RaisedButton.icon(
+                          onPressed: () {},
+                          label: Text(
+                            'Proceed',
+                            style: TextStyle(fontWeight: FontWeight.w600),
+                          ),
+                          icon: Icon(Icons.keyboard_arrow_right),
+                        )
+                      : OutlineButton(
+                          onPressed: () {},
+                          child: Text('Top up my wallet'),
+                          textColor: Theme.of(context).primaryColor,
+                          highlightedBorderColor:
+                              Theme.of(context).primaryColor,
+                        ),
+                ),
               ],
             ),
           );
