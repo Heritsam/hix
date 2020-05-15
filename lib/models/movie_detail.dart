@@ -25,5 +25,5 @@ class MovieDetail extends Movie {
   }
 
   @override
-  List<Object> get props => [genres, language];
+  List<Object> get props => super.props + [genres, language];
 }

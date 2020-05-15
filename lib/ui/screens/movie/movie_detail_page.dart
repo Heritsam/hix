@@ -15,15 +15,21 @@ class MovieDetailPage extends StatefulWidget {
 }
 
 class _MovieDetailPageState extends State<MovieDetailPage> {
+  MovieDetail movieDetail;
+  List<Credit> credits;
+
   void _navigateBack() {
     Navigator.pop(context);
   }
 
+  void _navigateToSchedulePage(MovieDetail movieDetail) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => SelectSchedulePage(movieDetail: movieDetail),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
-    MovieDetail movieDetail;
-    List<Credit> credits;
-
     return Scaffold(
       backgroundColor: Colors.blueGrey[50],
       body: FutureBuilder(
@@ -37,6 +43,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   credits = snapshot.data;
+
                   return _MainView(
                     movie: movieDetail,
                     credits: credits,
@@ -52,52 +59,13 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
           }
         },
       ),
-      floatingActionButton:
-          widget.isComingSoon ? null : _buildFloatingActionButton(),
-    );
-  }
-
-  Widget _buildFloatingActionButton() {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(2000.0),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            primaryColorLight,
-            accentColor,
-          ],
-        ),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            blurRadius: 24.0,
-            color: primaryColorLight.withOpacity(0.22),
-            offset: Offset(0, 16.0),
-          ),
-          BoxShadow(
-            blurRadius: 6.0,
-            color: primaryColorLight.withOpacity(0.14),
-            offset: Offset(0, 2.0),
-          ),
-          BoxShadow(
-            blurRadius: 1.0,
-            color: Colors.black.withOpacity(0.08),
-            offset: Offset(0, 0),
-          ),
-        ],
-      ),
-      child: FloatingActionButton.extended(
-        onPressed: () {},
-        label: Text('Buy ticket'),
-        icon: Icon(Icons.attach_money),
-        backgroundColor: Colors.transparent,
-        splashColor: primaryColorLight.withOpacity(0.25),
-        elevation: 0.0,
-        hoverElevation: 0.0,
-        highlightElevation: 0.0,
-        focusElevation: 0.0,
-      ),
+      floatingActionButton: widget.isComingSoon
+          ? null
+          : GradientFab(
+              onPressed: () => _navigateToSchedulePage(movieDetail),
+              label: Text('Buy ticket'),
+              icon: Icon(Icons.attach_money),
+            ),
     );
   }
 }

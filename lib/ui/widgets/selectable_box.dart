@@ -23,7 +23,11 @@ class SelectableBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap ?? null,
+      onTap: () {
+        if (onTap != null && isEnabled) {
+          onTap();
+        }
+      },
       borderRadius: BorderRadius.circular(8.0),
       child: Container(
         height: height,
@@ -31,7 +35,7 @@ class SelectableBox extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
           color: !isEnabled
-              ? Colors.blueGrey[200]
+              ? Colors.grey[300]
               : isSelected ? primaryColorLight : Colors.transparent,
           border: Border.all(
             color: isSelected ? Colors.transparent : Color(0xFFE4E4E4),

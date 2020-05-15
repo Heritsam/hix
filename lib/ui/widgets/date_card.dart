@@ -20,9 +20,11 @@ class DateCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap ?? null,
+      borderRadius: BorderRadius.circular(8.0),
       child: Container(
         height: height,
         width: width,
+        padding: EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
           color: isSelected ? primaryColorLight : Colors.transparent,
