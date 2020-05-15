@@ -28,7 +28,8 @@ class GradientFab extends StatelessWidget {
               )
             : LinearGradient(
                 colors: [
-                  Colors.red[400],
+                  Colors.grey[400],
+                  Colors.grey[300],
                 ],
               ),
         boxShadow: onPressed != null
