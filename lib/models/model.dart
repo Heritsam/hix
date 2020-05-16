@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+part 'app_transaction.dart';
 part 'credit.dart';
 part 'movie.dart';
 part 'movie_detail.dart';
