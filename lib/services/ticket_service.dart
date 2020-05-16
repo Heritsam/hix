@@ -32,7 +32,7 @@ class TicketService {
       tickets.add(Ticket(
         movieDetail: movieDetail,
         theater: Theater(document.data['theaterName']),
-        time: DateTime.fromMicrosecondsSinceEpoch(document.data['time']),
+        time: DateTime.fromMillisecondsSinceEpoch(document.data['time']),
         bookingCode: document.data['bookingCode'],
         seats: document.data['seats'].toString().split(','),
         name: document.data['name'],
