@@ -214,7 +214,10 @@ class _MovieDescription extends StatelessWidget {
               child: Container(
                 height: 100.0,
                 width: 80.0,
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
               ),
             ),
             Container(
