@@ -27,3 +27,21 @@ class UserUpdate extends UserEvent {
   @override
   List<Object> get props => [name, profileImage];
 }
+
+class UserTopUp extends UserEvent {
+  final int amount;
+
+  UserTopUp(this.amount);
+
+  @override
+  List<Object> get props => throw UnimplementedError();
+}
+
+class UserPurchase extends UserEvent {
+  final int amount;
+
+  UserPurchase(this.amount);
+
+  @override
+  List<Object> get props => throw UnimplementedError();
+}
