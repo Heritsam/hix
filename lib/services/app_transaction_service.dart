@@ -1,6 +1,6 @@
 part of 'service.dart';
 
-class TransactionService {
+class AppTransactionService {
   static CollectionReference transactionCollection =
       Firestore.instance.collection('transactions');
 

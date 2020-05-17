@@ -14,7 +14,7 @@ class GradientFab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(2000.0),
         gradient: onPressed != null
@@ -52,6 +52,7 @@ class GradientFab extends StatelessWidget {
               ]
             : null,
       ),
+      duration: Duration(milliseconds: 200),
       child: FloatingActionButton.extended(
         onPressed: onPressed ?? null,
         label: label,

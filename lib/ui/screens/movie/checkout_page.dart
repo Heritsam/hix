@@ -10,6 +10,27 @@ class CheckoutPage extends StatefulWidget {
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
+  void _checkoutButtonPressed(User user, int total) {
+    Ticket ticket = widget.ticket.copyWith(totalPrice: total);
+
+    Navigator.pop(context);
+    Navigator.pop(context);
+    Navigator.pop(context);
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (context) => SuccessPage(
+        ticket: ticket,
+        transaction: AppTransaction(
+          userId: user.userId,
+          title: ticket.movieDetail.title,
+          subtitle: ticket.theater.name,
+          time: DateTime.now(),
+          total: -total,
+          picture: ticket.movieDetail.posterPath,
+        ),
+      ),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     int total = 26500 * widget.ticket.seats.length;
@@ -61,12 +82,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   width: 250.0,
                   child: user.balance >= total
                       ? RaisedButton.icon(
-                          onPressed: () {},
+                          onPressed: () => _checkoutButtonPressed(user, total),
                           label: Text(
                             'Proceed',
                             style: TextStyle(fontWeight: FontWeight.w600),
                           ),
                           icon: Icon(Icons.keyboard_arrow_right),
+                          elevation: 0.0,
                         )
                       : OutlineButton(
                           onPressed: () {},

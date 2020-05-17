@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -18,14 +19,18 @@ import 'package:shimmer/shimmer.dart';
 import 'package:toast/toast.dart';
 
 part 'wrapper.dart';
+
 part 'authentication/confirmation_page.dart';
 part 'authentication/sign_in_page.dart';
 part 'authentication/sign_up_page.dart';
 part 'authentication/sign_up_preference_page.dart';
 part 'authentication/splash_screen.dart';
+
 part 'home/home_page.dart';
+
 part 'movie/checkout_page.dart';
 part 'movie/movie_page.dart';
 part 'movie/movie_detail_page.dart';
 part 'movie/select_schedule_page.dart';
 part 'movie/select_seat_page.dart';
+part 'movie/success_page.dart';

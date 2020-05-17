@@ -26,6 +26,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => MovieBloc()..add(FetchMovie()),
           ),
+          BlocProvider(
+            create: (context) => TicketBloc(),
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
