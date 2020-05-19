@@ -37,6 +37,18 @@ class MovieService {
     return result.map((item) => Movie.fromJson(item)).toList();
   }
 
+  static Future<Movie> getMovieById(int id, {http.Client client}) async {
+    String url = 'https://api.themoviedb.org/3/movie/$id?api_key=$apiKey&language=en-US';
+
+    client ??= http.Client();
+
+    var response = await client.get(url);
+    var data = json.decode(response.body);
+    Movie movie = Movie.fromJson(data);
+
+    return movie;
+  }
+
   static Future<MovieDetail> getMovieDetail(Movie movie,
       {http.Client client}) async {
     String url =

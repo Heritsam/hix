@@ -17,8 +17,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: Center(
-        child: SingleChildScrollView(
+        child: Padding(
           padding: EdgeInsets.all(64.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 padding: EdgeInsets.only(top: 48.0, bottom: 16.0),
                 child: Text(
                   'New Experience',
-                  style: Theme.of(context).textTheme.title.copyWith(
+                  style: Theme.of(context).textTheme.headline6.copyWith(
                         fontWeight: FontWeight.w800,
                       ),
                 ),

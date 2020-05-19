@@ -6,29 +6,11 @@ class MoviePage extends StatefulWidget {
 }
 
 class _MoviePageState extends State<MoviePage> {
-  void _signOutButtonPressed(BuildContext context) {
-    CupertinoAlertDialog alertDialog = CupertinoAlertDialog(
-      title: Text('Confirm Log Out'),
-      content: Text('Are you sure you want to log out?'),
-      actions: <Widget>[
-        CupertinoDialogAction(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Cancel'),
-        ),
-        CupertinoDialogAction(
-          onPressed: () {
-            Navigator.pop(context);
-            AuthService.signOut();
-          },
-          isDestructiveAction: true,
-          child: Text('Yes'),
-        ),
-      ],
-    );
 
-    showDialog(context: context, builder: (context) => alertDialog);
+  void _navigateToProfilePage() {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => ProfilePage(),
+    ));
   }
 
   @override
@@ -307,7 +289,7 @@ class _MoviePageState extends State<MoviePage> {
                 return Row(
                   children: <Widget>[
                     GestureDetector(
-                      onTap: () => _signOutButtonPressed(context),
+                      onTap: () => _navigateToProfilePage(),
                       child: Container(
                         padding: EdgeInsets.all(4.0),
                         decoration: BoxDecoration(

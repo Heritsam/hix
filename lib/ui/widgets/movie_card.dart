@@ -3,8 +3,9 @@ part of 'widget.dart';
 class MovieCard extends StatelessWidget {
   final Movie movie;
   final Function onTap;
+  final String heroTag;
 
-  MovieCard({Key key, this.movie, this.onTap}) : super(key: key);
+  MovieCard({Key key, this.movie, this.onTap, this.heroTag}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

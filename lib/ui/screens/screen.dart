@@ -14,6 +14,7 @@ import 'package:hix/shared/shared.dart';
 import 'package:hix/ui/widgets/widget.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:random_string/random_string.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:toast/toast.dart';
@@ -27,10 +28,14 @@ part 'authentication/sign_up_preference_page.dart';
 part 'authentication/splash_screen.dart';
 
 part 'home/home_page.dart';
+part 'home/profile_page.dart';
 
 part 'movie/checkout_page.dart';
 part 'movie/movie_page.dart';
 part 'movie/movie_detail_page.dart';
 part 'movie/select_schedule_page.dart';
 part 'movie/select_seat_page.dart';
-part 'movie/success_page.dart';
+part 'success_page.dart';
+
+part 'ticket/ticket_detail_page.dart';
+part 'ticket/ticket_page.dart';

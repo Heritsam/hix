@@ -1,6 +1,10 @@
 part of '../screen.dart';
 
 class HomePage extends StatefulWidget {
+  final int currentIndex;
+
+  const HomePage({Key key, this.currentIndex = 0}) : super(key: key);
+  
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -13,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    _currentIndex = 0;
+    _currentIndex = widget.currentIndex;
     _pageController = PageController(initialPage: _currentIndex);
   }
 
@@ -32,9 +36,7 @@ class _HomePageState extends State<HomePage> {
         },
         children: <Widget>[
           MoviePage(),
-          Center(
-            child: Text('My Tickets'),
-          ),
+          TicketPage(),
         ],
       ),
       floatingActionButton: _buildFloatingActionButton(),
