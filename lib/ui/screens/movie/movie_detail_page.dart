@@ -82,7 +82,7 @@ class _MainView extends StatelessWidget {
     @required this.backButtonPressed,
   }) : super(key: key);
 
-  List<BoxShadow> _boxShadows = [
+   final List<BoxShadow> _boxShadows = [
     BoxShadow(
       blurRadius: 24.0,
       color: Colors.black.withOpacity(0.22),

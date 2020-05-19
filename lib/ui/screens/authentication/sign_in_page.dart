@@ -87,7 +87,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   Text(
                     'Welcome Back,\nCinephilia!',
-                    style: Theme.of(context).textTheme.title.copyWith(
+                    style: Theme.of(context).textTheme.headline6.copyWith(
                           fontWeight: FontWeight.w800,
                         ),
                   ),

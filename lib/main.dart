@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
               elevation: 0.0,
               color: Colors.transparent,
               textTheme: TextTheme(
-                title: GoogleFonts.nunitoSans(
+                headline6: GoogleFonts.nunitoSans(
                   fontSize: 20.0,
                   color: Colors.black,
                   fontWeight: FontWeight.w800,

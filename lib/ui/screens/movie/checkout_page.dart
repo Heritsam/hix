@@ -206,7 +206,7 @@ class _MovieDescription extends StatelessWidget {
 
   _MovieDescription({Key key, @required this.ticket}) : super(key: key);
 
-  List<BoxShadow> _boxShadows = [
+  final List<BoxShadow> _boxShadows = [
     BoxShadow(
       blurRadius: 8.0,
       color: Colors.black.withOpacity(0.22),

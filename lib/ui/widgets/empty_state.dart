@@ -7,8 +7,6 @@ class EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     return Center(
       child: Padding(
         padding: EdgeInsets.all(64.0),

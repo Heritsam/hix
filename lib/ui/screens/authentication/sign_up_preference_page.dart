@@ -98,7 +98,7 @@ class _SignUpPreferencePageState extends State<SignUpPreferencePage> {
                   'Select Your\nInterests',
                   style: Theme.of(context)
                       .textTheme
-                      .title
+                      .headline6
                       .copyWith(fontWeight: FontWeight.w800),
                 ),
                 SizedBox(height: 16.0),
@@ -112,7 +112,7 @@ class _SignUpPreferencePageState extends State<SignUpPreferencePage> {
                   'Language that\nyou prefer',
                   style: Theme.of(context)
                       .textTheme
-                      .title
+                      .headline6
                       .copyWith(fontWeight: FontWeight.w800),
                 ),
                 SizedBox(height: 16.0),
