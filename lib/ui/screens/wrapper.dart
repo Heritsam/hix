@@ -15,6 +15,7 @@ class Wrapper extends StatelessWidget {
         prevPageEvent = GoToHomePage();
         context.bloc<PageBloc>().add(prevPageEvent);
         context.bloc<UserBloc>().add(LoadUser(firebaseUser.uid));
+        context.bloc<TicketBloc>().add(LoadTicket(firebaseUser.uid));
       }
     }
 
@@ -45,9 +46,9 @@ class Wrapper extends StatelessWidget {
           return HomePage();
         }
 
-        if (state is OnMovieDetailPage) {
-          return MovieDetailPage(movie: state.movie);
-        }
+        return Center(
+          child: CircularProgressIndicator(),
+        );
       },
     );
   }
