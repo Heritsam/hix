@@ -1,4 +1,4 @@
-part of '../screen.dart';
+part of 'screen.dart';
 
 class SuccessPage extends StatelessWidget {
   final Ticket ticket;
@@ -23,7 +23,6 @@ class SuccessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Center(
         child: FutureBuilder(
           future: ticket != null
@@ -60,7 +59,19 @@ class SuccessPage extends StatelessWidget {
                   ),
                   SizedBox(height: 64.0),
                   GradientFab(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (ticket != null) {
+                        Navigator.pop(context);
+                        Navigator.pushReplacement(context, MaterialPageRoute(
+                          builder: (context) => HomePage(currentIndex: 1),
+                        ));
+                      } else {
+                        Navigator.pop(context);
+                        Navigator.pushReplacement(context, MaterialPageRoute(
+                          builder: (context) => HomePage(),
+                        ));
+                      }
+                    },
                     icon: Icon(Icons.label_outline),
                     label: Text(ticket != null ? 'My tickets' : 'My wallet'),
                   ),
