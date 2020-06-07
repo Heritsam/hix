@@ -76,7 +76,11 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       child: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => TopUpPage(),
+          ));
+        },
         child: Icon(Icons.account_balance_wallet),
         backgroundColor: Colors.transparent,
         splashColor: primaryColorLight.withOpacity(0.25),

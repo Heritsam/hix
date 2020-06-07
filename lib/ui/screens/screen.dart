@@ -11,6 +11,10 @@ import 'package:hix/extensions/extension.dart';
 import 'package:hix/models/model.dart';
 import 'package:hix/services/service.dart';
 import 'package:hix/shared/shared.dart';
+import 'package:hix/ui/screens/authentication/forgot_password_page.dart';
+import 'package:hix/ui/screens/user/edit_profile_page.dart';
+import 'package:hix/ui/screens/user/top_up_page.dart';
+import 'package:hix/ui/screens/user/wallet_page.dart';
 import 'package:hix/ui/widgets/widget.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +32,6 @@ part 'authentication/sign_up_preference_page.dart';
 part 'authentication/splash_screen.dart';
 
 part 'home/home_page.dart';
-part 'home/profile_page.dart';
 
 part 'movie/checkout_page.dart';
 part 'movie/movie_page.dart';
@@ -39,3 +42,5 @@ part 'success_page.dart';
 
 part 'ticket/ticket_detail_page.dart';
 part 'ticket/ticket_page.dart';
+
+part 'user/profile_page.dart';

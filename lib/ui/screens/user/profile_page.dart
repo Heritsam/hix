@@ -6,7 +6,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
   void _signOutButtonPressed() {
     CupertinoAlertDialog alertDialog = CupertinoAlertDialog(
       title: Text('Confirm Log Out'),
@@ -31,6 +30,17 @@ class _ProfilePageState extends State<ProfilePage> {
     );
 
     showDialog(context: context, builder: (context) => alertDialog);
+  }
+
+  void _showAboutDialog() {
+    showAboutDialog(
+      context: context,
+      applicationIcon: Image.asset('assets/logo.png', width: 38.0),
+      applicationVersion: '1.0.0',
+      children: [
+        Text('Movie Category icons made by Freepik')
+      ],
+    );
   }
 
   @override
@@ -103,20 +113,34 @@ class _ProfilePageState extends State<ProfilePage> {
             padding: EdgeInsets.all(24.0),
             child: Column(
               children: <Widget>[
-                ListTile(
-                  onTap: () {},
-                  title: Text('Edit Profile'),
-                  leading: Icon(Icons.edit),
+                BlocBuilder<UserBloc, UserState>(
+                  builder: (context, state) {
+                    User user = (state as UserLoadSuccess).user;
+
+                    return ListTile(
+                      onTap: user != null ? () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => EditProfilePage(user: user),
+                        ));
+                      } : null,
+                      title: Text('Edit Profile'),
+                      leading: Icon(Icons.edit),
+                    );
+                  }
                 ),
                 Divider(),
                 ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => WalletPage(),
+                    ));
+                  },
                   title: Text('My Wallet'),
                   leading: Icon(Icons.account_balance_wallet),
                 ),
                 Divider(),
                 ListTile(
-                  onTap: () {},
+                  onTap: _showAboutDialog,
                   title: Text('About'),
                   leading: Icon(Icons.info),
                 ),
@@ -171,7 +195,9 @@ class _ProfilePageState extends State<ProfilePage> {
                               height: 80.0,
                               width: 80.0,
                               decoration: BoxDecoration(
-                                  shape: BoxShape.circle, color: Colors.white),
+                                shape: BoxShape.circle,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                           Container(

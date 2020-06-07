@@ -45,6 +45,12 @@ class _SignInPageState extends State<SignInPage> {
     BlocProvider.of<PageBloc>(context).add(GoToSplashScreenPage());
   }
 
+  void _navigateToForgotPassword() {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) => ForgotPasswordPage(email: _emailController.text),
+    ));
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -126,7 +132,7 @@ class _SignInPageState extends State<SignInPage> {
                     },
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: _navigateToForgotPassword,
                     child: Padding(
                       padding: EdgeInsets.only(top: 8.0),
                       child: Text(

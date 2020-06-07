@@ -18,7 +18,11 @@ class SuccessPage extends StatelessWidget {
     await AppTransactionService.saveTransaction(transaction);
   }
 
-  Future<void> _handleTopUp(BuildContext context) async {}
+  Future<void> _handleTopUp(BuildContext context) async {
+    BlocProvider.of<UserBloc>(context).add(UserTopUp(transaction.total));
+
+    await AppTransactionService.saveTransaction(transaction);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +70,8 @@ class SuccessPage extends StatelessWidget {
                           builder: (context) => HomePage(currentIndex: 1),
                         ));
                       } else {
-                        Navigator.pop(context);
                         Navigator.pushReplacement(context, MaterialPageRoute(
-                          builder: (context) => HomePage(),
+                          builder: (context) => WalletPage(),
                         ));
                       }
                     },

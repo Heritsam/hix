@@ -20,6 +20,7 @@ class _TicketPageState extends State<TicketPage> {
               builder: (context, state) {
                 return Expanded(
                   child: TabBarView(
+                    physics: BouncingScrollPhysics(),
                     children: <Widget>[
                       _TicketListView(
                         tickets: state.tickets

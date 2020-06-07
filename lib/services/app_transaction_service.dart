@@ -18,16 +18,19 @@ class AppTransactionService {
   static Future<List<AppTransaction>> getTransactions(String userId) async {
     QuerySnapshot snapshot = await transactionCollection.getDocuments();
 
-    var documents =
-        snapshot.documents.where((document) => document['userId'] == userId);
+    var documents = snapshot.documents
+        .where((document) => document.data['userId'] == userId);
 
-    return documents.map((e) => AppTransaction(
-      userId: userId,
-      title: e.data['title'],
-      subtitle: e.data['subtitle'],
-      time: DateTime.fromMillisecondsSinceEpoch(e.data['time']),
-      picture: e.data['picture'],
-      total: e.data['total'],
-    )).toList();
+    return documents.map((e) {
+      return AppTransaction(
+        userId: e.data['userId'],
+        title: e.data['title'],
+        subtitle: e.data['subtitle'],
+        time: DateTime.fromMillisecondsSinceEpoch(
+            e.data['time'].millisecondsSinceEpoch),
+        total: e.data['total'],
+        picture: e.data['picture'],
+      );
+    }).toList();
   }
 }

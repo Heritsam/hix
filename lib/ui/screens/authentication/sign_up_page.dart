@@ -42,6 +42,7 @@ class _SignUpPageState extends State<SignUpPage> {
             widget.registrationData.profilePicture = null;
             setState(() {});
           },
+          isDestructiveAction: true,
           child: Text('Yes'),
         ),
       ],

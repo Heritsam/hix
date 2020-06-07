@@ -94,8 +94,6 @@ class MovieService {
     var response = await client.get(url);
     var data = json.decode(response.body);
 
-    print(data);
-
     return ((data as Map<String, dynamic>)['cast'] as List)
         .map((item) {
           return Credit(
