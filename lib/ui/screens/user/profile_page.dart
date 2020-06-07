@@ -37,8 +37,11 @@ class _ProfilePageState extends State<ProfilePage> {
       context: context,
       applicationIcon: Image.asset('assets/logo.png', width: 38.0),
       applicationVersion: '1.0.0',
-      children: [
-        Text('Movie Category icons made by Freepik')
+      applicationLegalese:
+          'HIX is a movie ticket buying application built using Flutter and Firebase',
+      children: <Widget>[
+        SizedBox(height: 32.0),
+        Text('Movie Category icons made by Freepik'),
       ],
     );
   }
@@ -113,27 +116,32 @@ class _ProfilePageState extends State<ProfilePage> {
             padding: EdgeInsets.all(24.0),
             child: Column(
               children: <Widget>[
-                BlocBuilder<UserBloc, UserState>(
-                  builder: (context, state) {
-                    User user = (state as UserLoadSuccess).user;
+                BlocBuilder<UserBloc, UserState>(builder: (context, state) {
+                  User user = (state as UserLoadSuccess).user;
 
-                    return ListTile(
-                      onTap: user != null ? () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => EditProfilePage(user: user),
-                        ));
-                      } : null,
-                      title: Text('Edit Profile'),
-                      leading: Icon(Icons.edit),
-                    );
-                  }
-                ),
+                  return ListTile(
+                    onTap: user != null
+                        ? () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      EditProfilePage(user: user),
+                                ));
+                          }
+                        : null,
+                    title: Text('Edit Profile'),
+                    leading: Icon(Icons.edit),
+                  );
+                }),
                 Divider(),
                 ListTile(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => WalletPage(),
-                    ));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => WalletPage(),
+                        ));
                   },
                   title: Text('My Wallet'),
                   leading: Icon(Icons.account_balance_wallet),
