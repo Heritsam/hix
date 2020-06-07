@@ -23,9 +23,11 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   }
 
   void _navigateToSchedulePage(MovieDetail movieDetail) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => SelectSchedulePage(movieDetail: movieDetail),
-    ));
+    if (movieDetail != null) {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => SelectSchedulePage(movieDetail: movieDetail),
+      ));
+    }
   }
 
   @override
