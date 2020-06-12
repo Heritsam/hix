@@ -91,8 +91,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           elevation: 0.0,
                         )
                       : OutlineButton(
-                          onPressed: () {},
-                          child: Text('Top up my wallet'),
+                          onPressed: null,
+                          child: Text('Insufficient fund'),
                           textColor: Theme.of(context).primaryColor,
                           highlightedBorderColor:
                               Theme.of(context).primaryColor,
